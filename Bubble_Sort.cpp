@@ -25,12 +25,12 @@ vector<int> bubble(vector<int>& vec){
 }
 
 string trim(const string& line){
-  const auto first =find_if_not(line.begin,line.end(), [](unsigned char c){return isspace(c);});
+  const auto first =find_if_not(line.begin(),line.end(), [](unsigned char c){return isspace(c);});
 
   if (first ==line.end()){
     return "";
   }
-  const auto last=find_if_not(line.rbegin(),line.rend(),[](unsigned char c){return isspace(c);});
+  const auto last =find_if_not(line.rbegin(),line.rend(),[](unsigned char c){return isspace(c);});
 
   return string(first,last);
 }
@@ -41,14 +41,13 @@ int main(){
   string trim_line=trim(line);
   int num;
   try {
-    num=stoi(line);
+    num=stoi(trim_line);
   }catch (const invalid_argument& e){
     cerr<<"Error : Invalid argument for stoi()"<<endl;
   }catch (const out_of_range& e){
     cerr<<"Error : Value is too small for the integer or too large "<<endl;}
   vector<string> inpu(num);
   for (int i=0;i<num;i++){
-    cin.ignore();
     string line;
     getline(cin,line);
     inpu.push_back(trim(line));}
